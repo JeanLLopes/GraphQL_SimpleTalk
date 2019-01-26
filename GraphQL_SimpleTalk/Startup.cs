@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using GraphiQl;
 
 namespace GraphQL_SimpleTalk
 {
@@ -23,7 +24,7 @@ namespace GraphQL_SimpleTalk
             services.AddScoped<BlogService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public const string GraphQlPath = "/graphql";
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -37,6 +38,7 @@ namespace GraphQL_SimpleTalk
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseGraphiQl(GraphQlPath);
         }
     }
 }
